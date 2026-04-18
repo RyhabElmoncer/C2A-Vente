@@ -1,0 +1,18 @@
+package com.c2a.gestionventes.repository;
+
+import com.c2a.gestionventes.entity.Produit;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface ProduitRepository extends JpaRepository<Produit, Long> {
+    Optional<Produit> findByReference(String reference);
+    List<Produit> findByCategorie(String categorie);
+    List<Produit> findByActifTrue();
+    List<Produit> findByDesignationContainingIgnoreCase(String designation);
+    @Query("SELECT p FROM Produit p WHERE p.stockActuel <= p.stockMin")
+    List<Produit> findEnRupture();
+}
