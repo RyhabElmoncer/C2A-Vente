@@ -1,14 +1,10 @@
 package com.c2a.gestionventes.controller;
 
 import com.c2a.gestionventes.dto.BusinessDTOs.*;
-import com.c2a.gestionventes.entity.User;
-import com.c2a.gestionventes.enums.Role;
 import com.c2a.gestionventes.repository.*;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -65,44 +61,3 @@ class DashboardController {
     private Double safeDouble(Double val) { return val != null ? val : 0.0; }
 }
 
-// ===========================
-// DATA INITIALIZER
-// ===========================
-@org.springframework.stereotype.Component
-@RequiredArgsConstructor
-class DataInitializer {
-
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-
-    @PostConstruct
-    public void init() {
-        if (userRepository.count() == 0) {
-            userRepository.save(User.builder()
-                .nom("Admin").prenom("C2A")
-                .email("admin@c2a.tn")
-                .password(passwordEncoder.encode("admin123"))
-                .role(Role.ADMIN).site("Sfax").actif(true).build());
-
-            userRepository.save(User.builder()
-                .nom("Dammak").prenom("Mohamed")
-                .email("gerant@c2a.tn")
-                .password(passwordEncoder.encode("gerant123"))
-                .role(Role.GERANT).site("Sfax").actif(true).build());
-
-            userRepository.save(User.builder()
-                .nom("Commercial").prenom("Sfax")
-                .email("commercial@c2a.tn")
-                .password(passwordEncoder.encode("commercial123"))
-                .role(Role.COMMERCIAL).site("Sfax").actif(true).build());
-
-            userRepository.save(User.builder()
-                .nom("Comptable").prenom("C2A")
-                .email("comptable@c2a.tn")
-                .password(passwordEncoder.encode("comptable123"))
-                .role(Role.COMPTABLE).site("Sfax").actif(true).build());
-
-            System.out.println(">>> Users C2A initialisés !");
-        }
-    }
-}

@@ -52,10 +52,10 @@ export default function ProduitsPage() {
   const handleUpdate = async (data) => { await produitsAPI.update(modal.item.id, data); toast.success('Mis à jour !'); setModal(null); load() }
 
   return (
-    <div>
+    <div className="page-shell">
       <PageHeader title="Catalogue produits" subtitle={`${produits.length} produit(s)`}
         action={<button onClick={() => setModal('create')} className="btn-primary flex items-center gap-2"><PlusIcon className="w-4 h-4" />Nouveau produit</button>} />
-      <div className="card mb-4 flex items-center gap-4 py-4 flex-wrap">
+      <div className="toolbar">
         <SearchInput value={search} onChange={setSearch} placeholder="Référence, désignation…" />
         <select value={cat} onChange={e => setCat(e.target.value)} className="input-field w-44">
           <option value="">Toutes catégories</option>
@@ -64,7 +64,7 @@ export default function ProduitsPage() {
         <span className="text-sm text-red-600 flex items-center gap-1"><ExclamationTriangleIcon className="w-4 h-4" />{produits.filter(p => p.enRupture).length} en rupture</span>
       </div>
       <div className="card p-0 overflow-hidden">
-        {loading ? <div className="flex justify-center py-16"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"/></div>
+        {loading ? <div className="flex justify-center py-16"><div className="loading-spinner"/></div>
         : filtered.length === 0 ? <EmptyState message="Aucun produit" /> : (
           <div className="overflow-x-auto"><table className="w-full">
             <thead><tr>{['Réf.','Désignation','Catégorie','Prix achat','Prix vente','Unité','Stock','Statut',''].map(h=><th key={h} className="table-header">{h}</th>)}</tr></thead>
@@ -79,7 +79,7 @@ export default function ProduitsPage() {
                   <td className="table-cell">{p.unite}</td>
                   <td className="table-cell"><span className={p.enRupture ? 'text-red-600 font-bold' : ''}>{p.stockActuel} {p.enRupture && '⚠'}</span><span className="text-gray-400 text-xs ml-1">/ {p.stockMin}</span></td>
                   <td className="table-cell"><span className={p.actif ? 'badge-success' : 'badge-danger'}>{p.actif ? 'Actif' : 'Inactif'}</span></td>
-                  <td className="table-cell"><button onClick={() => setModal({ type:'edit', item:p })} className="p-1.5 text-gray-400 hover:text-green-600 rounded"><PencilIcon className="w-4 h-4" /></button></td>
+                  <td className="table-cell"><button onClick={() => setModal({ type:'edit', item:p })} className="icon-button"><PencilIcon className="w-4 h-4" /></button></td>
                 </tr>
               ))}
             </tbody>

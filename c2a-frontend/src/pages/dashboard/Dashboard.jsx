@@ -8,6 +8,7 @@ import {
   CurrencyDollarIcon, ShoppingCartIcon, UsersIcon,
   ExclamationTriangleIcon, BanknotesIcon, ClockIcon
 } from '@heroicons/react/24/outline'
+import { PageHeader } from '../../components/ui'
 
 const fmt = (n) => new Intl.NumberFormat('fr-TN', { style: 'currency', currency: 'TND', maximumFractionDigits: 0 }).format(n || 0)
 
@@ -18,9 +19,9 @@ function StatCard({ label, value, icon: Icon, color, sub }) {
         <Icon className="w-6 h-6" />
       </div>
       <div>
-        <p className="text-sm text-gray-500">{label}</p>
-        <p className="text-xl font-bold text-gray-900">{value}</p>
-        {sub && <p className="text-xs text-gray-400 mt-0.5">{sub}</p>}
+        <p className="text-sm font-semibold text-slate-500">{label}</p>
+        <p className="text-xl font-black text-slate-950">{value}</p>
+        {sub && <p className="mt-0.5 text-xs text-slate-400">{sub}</p>}
       </div>
     </div>
   )
@@ -36,25 +37,22 @@ export default function Dashboard() {
 
   if (loading) return (
     <div className="flex items-center justify-center h-64">
-      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600"/>
+      <div className="loading-spinner h-10 w-10"/>
     </div>
   )
 
   const stats = [
-    { label: 'CA ce mois', value: fmt(data?.chiffreAffairesMois), icon: CurrencyDollarIcon, color: 'bg-blue-50 text-blue-600', sub: `Annuel : ${fmt(data?.chiffreAffairesAnnee)}` },
-    { label: 'Commandes / mois', value: data?.nombreCommandesMois ?? 0, icon: ShoppingCartIcon, color: 'bg-green-50 text-green-600' },
-    { label: 'Clients actifs', value: data?.nombreClientsActifs ?? 0, icon: UsersIcon, color: 'bg-purple-50 text-purple-600' },
-    { label: 'Encaissements / mois', value: fmt(data?.encaissementsMois), icon: BanknotesIcon, color: 'bg-emerald-50 text-emerald-600' },
-    { label: 'Créances totales', value: fmt(data?.totalCreances), icon: ClockIcon, color: 'bg-orange-50 text-orange-600' },
-    { label: 'Produits en rupture', value: data?.nombreProduitsRupture ?? 0, icon: ExclamationTriangleIcon, color: 'bg-red-50 text-red-600' },
+    { label: 'CA ce mois', value: fmt(data?.chiffreAffairesMois), icon: CurrencyDollarIcon, color: 'bg-blue-50 text-blue-700', sub: `Annuel : ${fmt(data?.chiffreAffairesAnnee)}` },
+    { label: 'Commandes / mois', value: data?.nombreCommandesMois ?? 0, icon: ShoppingCartIcon, color: 'bg-slate-100 text-slate-700' },
+    { label: 'Clients actifs', value: data?.nombreClientsActifs ?? 0, icon: UsersIcon, color: 'bg-blue-50 text-blue-700' },
+    { label: 'Encaissements / mois', value: fmt(data?.encaissementsMois), icon: BanknotesIcon, color: 'bg-emerald-50 text-emerald-700' },
+    { label: 'Créances totales', value: fmt(data?.totalCreances), icon: ClockIcon, color: 'bg-amber-50 text-amber-700' },
+    { label: 'Produits en rupture', value: data?.nombreProduitsRupture ?? 0, icon: ExclamationTriangleIcon, color: 'bg-red-50 text-red-700' },
   ]
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Tableau de bord</h1>
-        <p className="text-gray-500 text-sm mt-1">Vue d'ensemble des performances C2A</p>
-      </div>
+    <div className="page-shell">
+      <PageHeader title="Tableau de bord" subtitle="Vue d'ensemble des performances C2A" />
 
       {/* Stats grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
@@ -65,29 +63,29 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         {/* Ventes par mois */}
         <div className="card">
-          <h2 className="text-base font-semibold text-gray-900 mb-4">Chiffre d'affaires — 12 mois</h2>
+          <h2 className="mb-4 text-base font-black text-slate-950">Chiffre d'affaires — 12 mois</h2>
           <ResponsiveContainer width="100%" height={240}>
             <BarChart data={data?.ventesParMois || []} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
               <XAxis dataKey="mois" tick={{ fontSize: 11 }} />
               <YAxis tick={{ fontSize: 11 }} tickFormatter={v => v >= 1000 ? `${(v/1000).toFixed(0)}k` : v} />
               <Tooltip formatter={v => fmt(v)} />
-              <Bar dataKey="montant" fill="#3b82f6" radius={[4,4,0,0]} name="Montant TTC" />
+              <Bar dataKey="montant" fill="#1d4ed8" radius={[4,4,0,0]} name="Montant TTC" />
             </BarChart>
           </ResponsiveContainer>
         </div>
 
         {/* Commandes par mois */}
         <div className="card">
-          <h2 className="text-base font-semibold text-gray-900 mb-4">Nombre de commandes — 12 mois</h2>
+          <h2 className="mb-4 text-base font-black text-slate-950">Nombre de commandes — 12 mois</h2>
           <ResponsiveContainer width="100%" height={240}>
             <LineChart data={data?.ventesParMois || []} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
               <XAxis dataKey="mois" tick={{ fontSize: 11 }} />
               <YAxis tick={{ fontSize: 11 }} />
               <Tooltip />
               <Legend />
-              <Line type="monotone" dataKey="nombreCommandes" stroke="#10b981" strokeWidth={2} dot={{ r: 3 }} name="Commandes" />
+              <Line type="monotone" dataKey="nombreCommandes" stroke="#0f766e" strokeWidth={2} dot={{ r: 3 }} name="Commandes" />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -96,7 +94,7 @@ export default function Dashboard() {
       {/* Top clients & produits */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         <div className="card">
-          <h2 className="text-base font-semibold text-gray-900 mb-4">Top clients</h2>
+          <h2 className="mb-4 text-base font-black text-slate-950">Top clients</h2>
           {(data?.topClients || []).length === 0
             ? <p className="text-gray-400 text-sm text-center py-8">Aucune donnée</p>
             : <table className="w-full text-sm">
@@ -119,7 +117,7 @@ export default function Dashboard() {
         </div>
 
         <div className="card">
-          <h2 className="text-base font-semibold text-gray-900 mb-4">Top produits</h2>
+          <h2 className="mb-4 text-base font-black text-slate-950">Top produits</h2>
           {(data?.topProduits || []).length === 0
             ? <p className="text-gray-400 text-sm text-center py-8">Aucune donnée</p>
             : <table className="w-full text-sm">

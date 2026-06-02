@@ -16,135 +16,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 // ===========================
-// CLIENT SERVICE
-// ===========================
-@Service
-@RequiredArgsConstructor
-class ClientServiceImpl {
-
-    private final ClientRepository clientRepository;
-
-    public List<ClientResponse> findAll() {
-        return clientRepository.findAll().stream().map(this::toResponse).collect(Collectors.toList());
-    }
-
-    public ClientResponse findById(Long id) {
-        return toResponse(clientRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Client non trouvé: " + id)));
-    }
-
-    public List<ClientResponse> findBySite(String site) {
-        return clientRepository.findBySite(site).stream().map(this::toResponse).collect(Collectors.toList());
-    }
-
-    public List<ClientResponse> findAvecCreances() {
-        return clientRepository.findClientsAvecCreances().stream().map(this::toResponse).collect(Collectors.toList());
-    }
-
-    @Transactional
-    public ClientResponse create(ClientRequest req) {
-        Client client = Client.builder()
-            .nom(req.getNom()).raisonSociale(req.getRaisonSociale())
-            .matriculeFiscal(req.getMatriculeFiscal()).telephone(req.getTelephone())
-            .email(req.getEmail()).adresse(req.getAdresse()).ville(req.getVille())
-            .codePostal(req.getCodePostal()).site(req.getSite())
-            .creditMax(req.getCreditMax() != null ? req.getCreditMax() : 0.0)
-            .build();
-        return toResponse(clientRepository.save(client));
-    }
-
-    @Transactional
-    public ClientResponse update(Long id, ClientRequest req) {
-        Client client = clientRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Client non trouvé: " + id));
-        client.setNom(req.getNom()); client.setTelephone(req.getTelephone());
-        client.setEmail(req.getEmail()); client.setAdresse(req.getAdresse());
-        client.setVille(req.getVille()); client.setSite(req.getSite());
-        client.setCreditMax(req.getCreditMax());
-        return toResponse(clientRepository.save(client));
-    }
-
-    @Transactional
-    public void delete(Long id) {
-        Client client = clientRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Client non trouvé: " + id));
-        client.setActif(false);
-        clientRepository.save(client);
-    }
-
-    ClientResponse toResponse(Client c) {
-        ClientResponse r = new ClientResponse();
-        r.setId(c.getId()); r.setNom(c.getNom()); r.setRaisonSociale(c.getRaisonSociale());
-        r.setTelephone(c.getTelephone()); r.setEmail(c.getEmail()); r.setAdresse(c.getAdresse());
-        r.setVille(c.getVille()); r.setSite(c.getSite());
-        r.setCreditMax(c.getCreditMax()); r.setSoldeCreance(c.getSoldeCreance()); r.setActif(c.isActif());
-        return r;
-    }
-}
-
-// ===========================
-// PRODUIT SERVICE
-// ===========================
-@Service
-@RequiredArgsConstructor
-class ProduitServiceImpl {
-
-    private final ProduitRepository produitRepository;
-
-    public List<ProduitResponse> findAll() {
-        return produitRepository.findAll().stream().map(this::toResponse).collect(Collectors.toList());
-    }
-
-    public ProduitResponse findById(Long id) {
-        return toResponse(produitRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Produit non trouvé: " + id)));
-    }
-
-    public List<ProduitResponse> findEnRupture() {
-        return produitRepository.findEnRupture().stream().map(this::toResponse).collect(Collectors.toList());
-    }
-
-    @Transactional
-    public ProduitResponse create(ProduitRequest req) {
-        if (produitRepository.findByReference(req.getReference()).isPresent())
-            throw new BusinessException("Référence déjà existante: " + req.getReference());
-        Produit p = Produit.builder()
-            .reference(req.getReference()).designation(req.getDesignation())
-            .categorie(req.getCategorie()).prixAchat(req.getPrixAchat())
-            .prixVente(req.getPrixVente()).unite(req.getUnite())
-            .stockActuel(req.getStockActuel()).stockMin(req.getStockMin())
-            .emplacement(req.getEmplacement()).description(req.getDescription())
-            .build();
-        return toResponse(produitRepository.save(p));
-    }
-
-    @Transactional
-    public ProduitResponse update(Long id, ProduitRequest req) {
-        Produit p = produitRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Produit non trouvé: " + id));
-        p.setDesignation(req.getDesignation()); p.setCategorie(req.getCategorie());
-        p.setPrixAchat(req.getPrixAchat()); p.setPrixVente(req.getPrixVente());
-        p.setUnite(req.getUnite()); p.setStockMin(req.getStockMin());
-        p.setEmplacement(req.getEmplacement());
-        return toResponse(produitRepository.save(p));
-    }
-
-    ProduitResponse toResponse(Produit p) {
-        ProduitResponse r = new ProduitResponse();
-        r.setId(p.getId()); r.setReference(p.getReference()); r.setDesignation(p.getDesignation());
-        r.setCategorie(p.getCategorie()); r.setPrixAchat(p.getPrixAchat()); r.setPrixVente(p.getPrixVente());
-        r.setUnite(p.getUnite()); r.setStockActuel(p.getStockActuel()); r.setStockMin(p.getStockMin());
-        r.setEnRupture(p.isEnRupture()); r.setEmplacement(p.getEmplacement()); r.setActif(p.isActif());
-        return r;
-    }
-}
-
-// ===========================
 // DEVIS SERVICE
 // ===========================
 @Service
 @RequiredArgsConstructor
-class DevisServiceImpl {
+public class DevisServiceImpl {
 
     private final DevisRepository devisRepository;
     private final ClientRepository clientRepository;
@@ -246,7 +122,7 @@ class DevisServiceImpl {
 
     private String genererNumeroCommande() {
         String prefix = "CMD-" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMM")) + "-";
-        String last = commandeRepository.findLastNumero(prefix);
+        String last = String.valueOf(commandeRepository.findByNumero(prefix));
         int next = (last != null) ? Integer.parseInt(last.replace(prefix, "")) + 1 : 1;
         return prefix + String.format("%04d", next);
     }

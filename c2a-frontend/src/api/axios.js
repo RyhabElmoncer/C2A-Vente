@@ -17,6 +17,7 @@ api.interceptors.response.use(
   res => res,
   err => {
     const msg = err.response?.data?.message || err.response?.data?.error || 'Erreur serveur'
+    if (err.config?.skipGlobalErrorToast) return Promise.reject(err)
     if (err.response?.status === 401) {
       localStorage.removeItem('c2a_token')
       localStorage.removeItem('c2a_user')

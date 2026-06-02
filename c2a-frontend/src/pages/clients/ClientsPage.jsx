@@ -108,7 +108,7 @@ export default function ClientsPage() {
   const fmt = (n) => new Intl.NumberFormat('fr-TN').format(n || 0)
 
   return (
-    <div>
+    <div className="page-shell">
       <PageHeader
         title="Clients"
         subtitle={`${clients.length} client(s) enregistré(s)`}
@@ -120,14 +120,14 @@ export default function ClientsPage() {
       />
 
       {/* Filters */}
-      <div className="card mb-4 flex items-center gap-4 py-4">
+      <div className="toolbar">
         <SearchInput value={search} onChange={setSearch} placeholder="Rechercher un client…" />
       </div>
 
       {/* Table */}
       <div className="card p-0 overflow-hidden">
         {loading ? (
-          <div className="flex justify-center py-16"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"/></div>
+          <div className="flex justify-center py-16"><div className="loading-spinner"/></div>
         ) : filtered.length === 0 ? <EmptyState message="Aucun client trouvé" /> : (
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -159,13 +159,13 @@ export default function ClientsPage() {
                     </td>
                     <td className="table-cell">
                       <div className="flex gap-1">
-                        <button onClick={() => setModal({ type: 'view', item: c })} className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded">
+                        <button onClick={() => setModal({ type: 'view', item: c })} className="icon-button">
                           <EyeIcon className="w-4 h-4" />
                         </button>
-                        <button onClick={() => setModal({ type: 'edit', item: c })} className="p-1.5 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded">
+                        <button onClick={() => setModal({ type: 'edit', item: c })} className="icon-button">
                           <PencilIcon className="w-4 h-4" />
                         </button>
-                        <button onClick={() => handleDelete(c.id)} className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded">
+                        <button onClick={() => handleDelete(c.id)} className="icon-button hover:text-red-600">
                           <TrashIcon className="w-4 h-4" />
                         </button>
                       </div>

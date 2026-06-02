@@ -28,13 +28,13 @@ export default function FacturesPage() {
   }
 
   return (
-    <div>
+    <div className="page-shell">
       <PageHeader title="Facturation" subtitle={`${factures.length} facture(s)`} />
-      <div className="card mb-4 flex gap-4 py-4">
+      <div className="toolbar">
         <SearchInput value={search} onChange={setSearch} placeholder="Numéro de facture…" />
       </div>
       <div className="card p-0 overflow-hidden">
-        {loading ? <div className="flex justify-center py-16"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" /></div>
+        {loading ? <div className="flex justify-center py-16"><div className="loading-spinner" /></div>
           : filtered.length === 0 ? <EmptyState message="Aucune facture" /> : (
             <div className="overflow-x-auto"><table className="w-full">
               <thead><tr>{['Numéro', 'Date', 'Échéance', 'Montant TTC', 'Payé', 'Restant', 'Statut', 'Action'].map(h => <th key={h} className="table-header">{h}</th>)}</tr></thead>
@@ -50,7 +50,7 @@ export default function FacturesPage() {
                   <td className="table-cell">
                     {f.statut !== 'PAYEE' && f.statut !== 'ANNULEE' && (
                       <button onClick={() => { setPForm(p => ({ ...p, factureId: f.id, montant: f.montantRestant })); setModal('paiement') }}
-                        className="text-xs bg-green-50 text-green-700 px-2 py-1 rounded flex items-center gap-1">
+                        className="action-chip">
                         <PlusIcon className="w-3 h-3" />Paiement
                       </button>
                     )}

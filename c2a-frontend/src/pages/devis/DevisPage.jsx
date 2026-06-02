@@ -16,7 +16,7 @@ function LignesForm({ lignes, setLignes, produits }) {
         <button type="button" onClick={add} className="text-xs text-blue-600 flex items-center gap-1"><PlusIcon className="w-3 h-3" />Ajouter</button>
       </div>
       {lignes.map((l, i) => (
-        <div key={i} className="grid grid-cols-12 gap-2 items-center bg-gray-50 rounded-lg p-2 mb-2">
+        <div key={i} className="mb-2 grid grid-cols-12 items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 p-2">
           <div className="col-span-5">
             <select value={l.produitId} onChange={e => { const p = produits.find(p => p.id === +e.target.value); set(i, 'produitId', e.target.value); if (p) set(i, 'prixUnitaire', p.prixVente) }} className="input-field text-xs">
               <option value="">Produit…</option>
@@ -72,12 +72,12 @@ export default function DevisPage() {
   }
 
   return (
-    <div>
+    <div className="page-shell">
       <PageHeader title="Devis" subtitle={`${devis.length} devis`}
         action={<button onClick={() => { setModal('create'); setLignes([]) }} className="btn-primary flex items-center gap-2"><PlusIcon className="w-4 h-4" />Nouveau devis</button>} />
-      <div className="card mb-4 flex gap-4 py-4"><SearchInput value={search} onChange={setSearch} placeholder="Numéro, client…" /></div>
+      <div className="toolbar"><SearchInput value={search} onChange={setSearch} placeholder="Numéro, client…" /></div>
       <div className="card p-0 overflow-hidden">
-        {loading ? <div className="flex justify-center py-16"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" /></div>
+        {loading ? <div className="flex justify-center py-16"><div className="loading-spinner" /></div>
           : filtered.length === 0 ? <EmptyState message="Aucun devis" /> : (
             <div className="overflow-x-auto"><table className="w-full">
               <thead><tr>{['Numéro', 'Client', 'Date', 'Validité', 'Montant TTC', 'Statut', 'Actions'].map(h => <th key={h} className="table-header">{h}</th>)}</tr></thead>
@@ -91,9 +91,9 @@ export default function DevisPage() {
                   <td className="table-cell"><Badge statut={d.statut} /></td>
                   <td className="table-cell">
                     <div className="flex gap-1 flex-wrap">
-                      {d.statut === 'BROUILLON' && <button onClick={() => handleStatut(d.id, 'ENVOYE')} className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded">Envoyer</button>}
-                      {d.statut === 'ENVOYE' && <button onClick={() => handleStatut(d.id, 'VALIDE')} className="text-xs bg-green-50 text-green-700 px-2 py-1 rounded">Valider</button>}
-                      {d.statut === 'VALIDE' && <button onClick={() => handleConvertir(d.id)} className="text-xs bg-purple-50 text-purple-700 px-2 py-1 rounded flex items-center gap-1"><ArrowPathIcon className="w-3 h-3" />Convertir</button>}
+                      {d.statut === 'BROUILLON' && <button onClick={() => handleStatut(d.id, 'ENVOYE')} className="action-chip">Envoyer</button>}
+                      {d.statut === 'ENVOYE' && <button onClick={() => handleStatut(d.id, 'VALIDE')} className="action-chip">Valider</button>}
+                      {d.statut === 'VALIDE' && <button onClick={() => handleConvertir(d.id)} className="action-chip"><ArrowPathIcon className="w-3 h-3" />Convertir</button>}
                     </div>
                   </td>
                 </tr>

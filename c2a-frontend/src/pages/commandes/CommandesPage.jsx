@@ -23,9 +23,9 @@ export default function CommandesPage() {
   const handleStatut = async (id, s) => { await commandesAPI.changerStatut(id, s); toast.success(`→ ${s}`); load() }
 
   return (
-    <div>
+    <div className="page-shell">
       <PageHeader title="Commandes" subtitle={`${commandes.length} commande(s)`} />
-      <div className="card mb-4 flex gap-4 py-4 flex-wrap">
+      <div className="toolbar">
         <SearchInput value={search} onChange={setSearch} placeholder="Numéro, client…" />
         <select value={statut} onChange={e => setStatut(e.target.value)} className="input-field w-48">
           <option value="">Tous statuts</option>
@@ -33,7 +33,7 @@ export default function CommandesPage() {
         </select>
       </div>
       <div className="card p-0 overflow-hidden">
-        {loading ? <div className="flex justify-center py-16"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" /></div>
+        {loading ? <div className="flex justify-center py-16"><div className="loading-spinner" /></div>
           : filtered.length === 0 ? <EmptyState message="Aucune commande" /> : (
             <div className="overflow-x-auto"><table className="w-full">
               <thead><tr>{['Numéro', 'Client', 'Site', 'Date', 'Livraison prévue', 'Montant TTC', 'Statut', 'Action'].map(h => <th key={h} className="table-header">{h}</th>)}</tr></thead>
@@ -48,7 +48,7 @@ export default function CommandesPage() {
                   <td className="table-cell"><Badge statut={c.statut} /></td>
                   <td className="table-cell">
                     {nextStatut[c.statut] && (
-                      <button onClick={() => handleStatut(c.id, nextStatut[c.statut])} className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded hover:bg-blue-100">
+                      <button onClick={() => handleStatut(c.id, nextStatut[c.statut])} className="action-chip">
                         → {nextStatut[c.statut].replace(/_/g, ' ')}
                       </button>
                     )}

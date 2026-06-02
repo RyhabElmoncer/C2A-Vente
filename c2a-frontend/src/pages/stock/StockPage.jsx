@@ -44,7 +44,7 @@ export default function StockPage() {
   }
 
   return (
-    <div>
+    <div className="page-shell">
       <PageHeader
         title="Gestion des stocks"
         subtitle={`${produits.length} produit(s) — ${ruptures.length} en rupture`}
@@ -52,7 +52,7 @@ export default function StockPage() {
       />
 
       {ruptures.length > 0 && (
-        <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-4 flex items-start gap-3">
+        <div className="alert-danger mb-4 flex items-start gap-3">
           <ExclamationTriangleIcon className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
           <div>
             <p className="text-sm font-semibold text-red-800">Alertes rupture de stock</p>
@@ -63,12 +63,12 @@ export default function StockPage() {
         </div>
       )}
 
-      <div className="card mb-4 flex gap-4 py-4">
+      <div className="toolbar">
         <SearchInput value={search} onChange={setSearch} placeholder="Référence, désignation…" />
       </div>
 
       <div className="card p-0 overflow-hidden">
-        {loading ? <div className="flex justify-center py-16"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" /></div>
+        {loading ? <div className="flex justify-center py-16"><div className="loading-spinner" /></div>
           : filtered.length === 0 ? <EmptyState message="Aucun produit" /> : (
             <div className="overflow-x-auto"><table className="w-full">
               <thead><tr>{['Réf.', 'Désignation', 'Catégorie', 'Stock actuel', 'Stock min', 'Emplacement', 'Statut', 'Historique'].map(h => <th key={h} className="table-header">{h}</th>)}</tr></thead>
@@ -78,7 +78,7 @@ export default function StockPage() {
                   <td className="table-cell font-medium">{p.designation}</td>
                   <td className="table-cell"><span className="badge-gray">{p.categorie}</span></td>
                   <td className="table-cell">
-                    <span className={`text-lg font-bold ${p.enRupture ? 'text-red-600' : 'text-gray-900'}`}>{p.stockActuel}</span>
+                    <span className={`text-lg font-bold ${p.enRupture ? 'text-red-600' : 'text-slate-950'}`}>{p.stockActuel}</span>
                     <span className="text-gray-400 text-xs ml-1">{p.unite}</span>
                     {p.enRupture && <span className="ml-1 text-red-500">⚠</span>}
                   </td>
@@ -87,7 +87,7 @@ export default function StockPage() {
                   <td className="table-cell"><span className={p.enRupture ? 'badge-danger' : 'badge-success'}>{p.enRupture ? 'Rupture' : 'OK'}</span></td>
                   <td className="table-cell">
                     <button onClick={async () => { setSelProduit(p); await loadMouvements(p.id); setModal('historique') }}
-                      className="text-xs bg-gray-50 text-gray-700 px-2 py-1 rounded hover:bg-gray-100">Voir</button>
+                      className="action-chip">Voir</button>
                   </td>
                 </tr>
               ))}</tbody>

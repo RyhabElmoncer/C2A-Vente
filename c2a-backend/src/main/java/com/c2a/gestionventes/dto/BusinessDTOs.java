@@ -69,6 +69,32 @@ public class BusinessDTOs {
         private boolean actif;
     }
 
+    @Data
+    public static class PublicProduitResponse {
+        private Long id;
+        private String reference;
+        private String designation;
+        private String categorie;
+        private String description;
+        private String emplacement;
+        private Double prixVente;
+        private String unite;
+        private Integer stockActuel;
+        private boolean disponible;
+    }
+
+    @Data
+    public static class CatalogueAluminiumResponse {
+        private Long id;
+        private String reference;
+        private String nom;
+        private String categorie;
+        private String image;
+        private Double largeur;
+        private Double hauteur;
+        private String description;
+    }
+
     // ===== LIGNE =====
     @Data
     public static class LigneRequest {
@@ -136,6 +162,13 @@ public class BusinessDTOs {
         private String conditionsPaiement;
         private LocalDate dateLivraisonPrevue;
         @NotEmpty private List<LigneRequest> lignes;
+    }
+
+    @Data
+    public static class ClientAchatRequest {
+        @NotNull private Long produitId;
+        @Positive private Double quantite;
+        private String observations;
     }
 
     @Data

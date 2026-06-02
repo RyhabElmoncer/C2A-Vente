@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
   }, [])
 
   const login = async (email, password) => {
-    const { data } = await api.post('/auth/login', { email, password })
+    const { data } = await api.post('/auth/login', { email, password }, { skipGlobalErrorToast: true })
     localStorage.setItem('c2a_token', data.token)
     localStorage.setItem('c2a_user', JSON.stringify(data))
     api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`

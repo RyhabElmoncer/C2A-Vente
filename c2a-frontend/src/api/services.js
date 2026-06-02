@@ -1,5 +1,14 @@
 import api from './axios'
 
+// Public
+export const publicAPI = {
+  getProduits: () => api.get('/public/produits'),
+  getCatalogueAluminium: (reference) => api.get('/public/catalogue-aluminium', {
+    params: reference ? { reference } : {},
+  }),
+  getProfileAluminium: (id) => api.get(`/public/catalogue-aluminium/${id}`),
+}
+
 // Clients
 export const clientsAPI = {
   getAll: () => api.get('/clients'),
@@ -37,6 +46,11 @@ export const commandesAPI = {
   getByStatut: (statut) => api.get(`/commandes/statut/${statut}`),
   create: (data) => api.post('/commandes', data),
   changerStatut: (id, statut) => api.patch(`/commandes/${id}/statut/${statut}`),
+}
+
+// Espace client
+export const clientAPI = {
+  demanderAchat: (data) => api.post('/commandes/client', data),
 }
 
 // Factures

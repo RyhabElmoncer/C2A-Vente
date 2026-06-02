@@ -20,4 +20,6 @@ public interface CommandeRepository extends JpaRepository<Commande, Long> {
     List<Commande> findByPeriode(@Param("debut") LocalDate debut, @Param("fin") LocalDate fin);
     @Query("SELECT SUM(c.montantTTC) FROM Commande c WHERE c.dateCommande BETWEEN :debut AND :fin AND c.statut != 'ANNULEE'")
     Double sumChiffreAffaires(@Param("debut") LocalDate debut, @Param("fin") LocalDate fin);
+    @Query("SELECT MAX(c.numero) FROM Commande c WHERE c.numero LIKE CONCAT(:prefix, '%')")
+    String findLastNumero(@Param("prefix") String prefix);
 }
