@@ -1,0 +1,81 @@
+package com.c2a.gestionventes.service.impl;
+
+import com.c2a.gestionventes.dto.BusinessDTOs;
+import com.c2a.gestionventes.entity.Produit;
+import com.c2a.gestionventes.exception.BusinessException;
+import com.c2a.gestionventes.repository.ProduitRepository;
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+// ===========================
+// PRODUIT SERVICE
+// ===========================
+@Service
+@RequiredArgsConstructor
+public class ProduitServiceImpl {
+
+    private final ProduitRepository produitRepository;
+
+    public List<BusinessDTOs.ProduitResponse> findAll() {
+        return produitRepository.findAll().stream().map(this::toResponse).collect(Collectors.toList());
+    }
+
+    public BusinessDTOs.ProduitResponse findById(Long id) {
+        return toResponse(produitRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Produit non trouvé: " + id)));
+    }
+
+    public List<BusinessDTOs.ProduitResponse> findEnRupture() {
+        return produitRepository.findEnRupture().stream().map(this::toResponse).collect(Collectors.toList());
+    }
+
+    @Transactional
+    public BusinessDTOs.ProduitResponse create(BusinessDTOs.ProduitRequest req) {
+        if (produitRepository.findByReference(req.getReference()).isPresent())
+            throw new BusinessException("Référence déjà existante: " + req.getReference());
+        Produit p = Produit.builder()
+                .reference(req.getReference()).designation(req.getDesignation())
+                .categorie(req.getCategorie()).prixAchat(req.getPrixAchat())
+                .prixVente(req.getPrixVente()).unite(req.getUnite())
+                .stockActuel(req.getStockActuel()).stockMin(req.getStockMin())
+                .emplacement(req.getEmplacement()).description(req.getDescription())
+                .build();
+        return toResponse(produitRepository.save(p));
+    }
+
+    @Transactional
+    public BusinessDTOs.ProduitResponse update(Long id, BusinessDTOs.ProduitRequest req) {
+        Produit p = produitRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Produit non trouvé: " + id));
+        p.setDesignation(req.getDesignation());
+        p.setCategorie(req.getCategorie());
+        p.setPrixAchat(req.getPrixAchat());
+        p.setPrixVente(req.getPrixVente());
+        p.setUnite(req.getUnite());
+        p.setStockMin(req.getStockMin());
+        p.setEmplacement(req.getEmplacement());
+        return toResponse(produitRepository.save(p));
+    }
+
+    BusinessDTOs.ProduitResponse toResponse(Produit p) {
+        BusinessDTOs.ProduitResponse r = new BusinessDTOs.ProduitResponse();
+        r.setId(p.getId());
+        r.setReference(p.getReference());
+        r.setDesignation(p.getDesignation());
+        r.setCategorie(p.getCategorie());
+        r.setPrixAchat(p.getPrixAchat());
+        r.setPrixVente(p.getPrixVente());
+        r.setUnite(p.getUnite());
+        r.setStockActuel(p.getStockActuel());
+        r.setStockMin(p.getStockMin());
+        r.setEnRupture(p.isEnRupture());
+        r.setEmplacement(p.getEmplacement());
+        r.setActif(p.isActif());
+        return r;
+    }
+}
