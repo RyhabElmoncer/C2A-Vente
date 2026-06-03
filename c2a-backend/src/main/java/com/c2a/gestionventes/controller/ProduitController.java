@@ -22,29 +22,31 @@ class ProduitController {
     private final ProduitServiceImpl produitService;
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('COMMERCIAL','MAGASINIER','CLIENT')")
     public ResponseEntity<List<BusinessDTOs.ProduitResponse>> findAll() {
         return ResponseEntity.ok(produitService.findAll());
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('COMMERCIAL','MAGASINIER','CLIENT')")
     public ResponseEntity<BusinessDTOs.ProduitResponse> findById(@PathVariable Long id) {
         return ResponseEntity.ok(produitService.findById(id));
     }
 
     @GetMapping("/rupture")
-    @PreAuthorize("!hasRole('CLIENT')")
+    @PreAuthorize("hasRole('MAGASINIER')")
     public ResponseEntity<List<BusinessDTOs.ProduitResponse>> findEnRupture() {
         return ResponseEntity.ok(produitService.findEnRupture());
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN','GERANT','MAGASINIER')")
+    @PreAuthorize("hasRole('MAGASINIER')")
     public ResponseEntity<BusinessDTOs.ProduitResponse> create(@Valid @RequestBody BusinessDTOs.ProduitRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(produitService.create(request));
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','GERANT','MAGASINIER')")
+    @PreAuthorize("hasRole('MAGASINIER')")
     public ResponseEntity<BusinessDTOs.ProduitResponse> update(@PathVariable Long id, @Valid @RequestBody BusinessDTOs.ProduitRequest request) {
         return ResponseEntity.ok(produitService.update(id, request));
     }

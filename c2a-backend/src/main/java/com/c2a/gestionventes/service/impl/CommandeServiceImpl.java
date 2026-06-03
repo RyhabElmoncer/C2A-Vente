@@ -13,6 +13,8 @@ import com.c2a.gestionventes.repository.ProduitRepository;
 import com.c2a.gestionventes.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -113,11 +115,32 @@ public class CommandeServiceImpl {
     }
 
     @Transactional
-    public BusinessDTOs.CommandeResponse changerStatut(Long id, StatutCommande statut) {
+    public BusinessDTOs.CommandeResponse changerStatut(Long id, StatutCommande statut, Authentication authentication) {
         Commande commande = commandeRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Commande non trouvée: " + id));
+        verifierTransitionAutorisee(commande.getStatut(), statut, authentication);
         commande.setStatut(statut);
         return toResponse(commandeRepository.save(commande));
+    }
+
+    private void verifierTransitionAutorisee(StatutCommande actuel, StatutCommande cible, Authentication authentication) {
+        if (hasRole(authentication, "COMMERCIAL") && actuel == StatutCommande.EN_ATTENTE && cible == StatutCommande.CONFIRMEE) {
+            return;
+        }
+        if (hasRole(authentication, "MAGASINIER")) {
+            boolean preparation = actuel == StatutCommande.CONFIRMEE && cible == StatutCommande.EN_PREPARATION;
+            boolean expedition = actuel == StatutCommande.EN_PREPARATION && cible == StatutCommande.EXPEDIEE;
+            boolean livraison = actuel == StatutCommande.EXPEDIEE && cible == StatutCommande.LIVREE;
+            if (preparation || expedition || livraison) {
+                return;
+            }
+        }
+        throw new AccessDeniedException("Transition de commande non autorisee pour ce role");
+    }
+
+    private boolean hasRole(Authentication authentication, String role) {
+        return authentication != null && authentication.getAuthorities().stream()
+                .anyMatch(authority -> authority.getAuthority().equals("ROLE_" + role));
     }
 
     private String genererNumero() {

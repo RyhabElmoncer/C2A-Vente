@@ -24,7 +24,7 @@ class DashboardController {
     private final PaiementRepository paiementRepository;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('GERANT','ADMIN','COMMERCIAL','COMPTABLE')")
+    @PreAuthorize("hasAnyRole('GERANT','ADMIN')")
     public ResponseEntity<DashboardDTO> getDashboard() {
         DashboardDTO dto = new DashboardDTO();
         LocalDate debutMois = LocalDate.now().withDayOfMonth(1);

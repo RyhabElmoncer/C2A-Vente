@@ -53,6 +53,14 @@ export const clientAPI = {
   demanderAchat: (data) => api.post('/commandes/client', data),
 }
 
+// Utilisateurs
+export const usersAPI = {
+  getAll: () => api.get('/users'),
+  create: (data) => api.post('/users', data),
+  update: (id, data) => api.put(`/users/${id}`, data),
+  deactivate: (id) => api.delete(`/users/${id}`),
+}
+
 // Factures
 export const facturesAPI = {
   getAll: () => api.get('/factures'),

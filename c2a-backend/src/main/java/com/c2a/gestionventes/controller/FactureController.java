@@ -22,31 +22,31 @@ class FactureController {
     private final FactureServiceImpl factureService;
 
     @GetMapping
-    @PreAuthorize("!hasRole('CLIENT')")
+    @PreAuthorize("hasAnyRole('COMPTABLE','AGENT_RECOUVREMENT')")
     public ResponseEntity<List<BusinessDTOs.FactureResponse>> findAll() {
         return ResponseEntity.ok(factureService.findAll());
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("!hasRole('CLIENT')")
+    @PreAuthorize("hasAnyRole('COMPTABLE','AGENT_RECOUVREMENT')")
     public ResponseEntity<BusinessDTOs.FactureResponse> findById(@PathVariable Long id) {
         return ResponseEntity.ok(factureService.findById(id));
     }
 
     @GetMapping("/retard")
-    @PreAuthorize("hasAnyRole('COMPTABLE','GERANT','ADMIN','AGENT_RECOUVREMENT')")
+    @PreAuthorize("hasAnyRole('COMPTABLE','AGENT_RECOUVREMENT')")
     public ResponseEntity<List<BusinessDTOs.FactureResponse>> findEnRetard() {
         return ResponseEntity.ok(factureService.findEnRetard());
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('COMMERCIAL','COMPTABLE','ADMIN','GERANT')")
+    @PreAuthorize("hasRole('COMPTABLE')")
     public ResponseEntity<BusinessDTOs.FactureResponse> create(@Valid @RequestBody BusinessDTOs.FactureRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(factureService.create(request));
     }
 
     @PostMapping("/paiements")
-    @PreAuthorize("hasAnyRole('COMPTABLE','ADMIN','GERANT','AGENT_RECOUVREMENT')")
+    @PreAuthorize("hasAnyRole('COMPTABLE','AGENT_RECOUVREMENT')")
     public ResponseEntity<BusinessDTOs.PaiementResponse> enregistrerPaiement(@Valid @RequestBody BusinessDTOs.PaiementRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(factureService.enregistrerPaiement(request));
     }

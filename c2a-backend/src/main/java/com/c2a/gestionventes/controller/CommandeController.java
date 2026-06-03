@@ -24,31 +24,31 @@ class CommandeController {
     private final CommandeServiceImpl commandeService;
 
     @GetMapping
-    @PreAuthorize("!hasRole('CLIENT')")
+    @PreAuthorize("hasAnyRole('COMMERCIAL','MAGASINIER','COMPTABLE')")
     public ResponseEntity<List<BusinessDTOs.CommandeResponse>> findAll() {
         return ResponseEntity.ok(commandeService.findAll());
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("!hasRole('CLIENT')")
+    @PreAuthorize("hasAnyRole('COMMERCIAL','MAGASINIER','COMPTABLE')")
     public ResponseEntity<BusinessDTOs.CommandeResponse> findById(@PathVariable Long id) {
         return ResponseEntity.ok(commandeService.findById(id));
     }
 
     @GetMapping("/site/{site}")
-    @PreAuthorize("!hasRole('CLIENT')")
+    @PreAuthorize("hasAnyRole('COMMERCIAL','MAGASINIER','COMPTABLE')")
     public ResponseEntity<List<BusinessDTOs.CommandeResponse>> findBySite(@PathVariable String site) {
         return ResponseEntity.ok(commandeService.findBySite(site));
     }
 
     @GetMapping("/statut/{statut}")
-    @PreAuthorize("!hasRole('CLIENT')")
+    @PreAuthorize("hasAnyRole('COMMERCIAL','MAGASINIER','COMPTABLE')")
     public ResponseEntity<List<BusinessDTOs.CommandeResponse>> findByStatut(@PathVariable StatutCommande statut) {
         return ResponseEntity.ok(commandeService.findByStatut(statut));
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('COMMERCIAL','ADMIN','GERANT')")
+    @PreAuthorize("hasRole('COMMERCIAL')")
     public ResponseEntity<BusinessDTOs.CommandeResponse> create(@Valid @RequestBody BusinessDTOs.CommandeRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(commandeService.create(request));
     }
@@ -63,8 +63,11 @@ class CommandeController {
     }
 
     @PatchMapping("/{id}/statut/{statut}")
-    @PreAuthorize("hasAnyRole('COMMERCIAL','ADMIN','GERANT','MAGASINIER')")
-    public ResponseEntity<BusinessDTOs.CommandeResponse> changerStatut(@PathVariable Long id, @PathVariable StatutCommande statut) {
-        return ResponseEntity.ok(commandeService.changerStatut(id, statut));
+    @PreAuthorize("hasAnyRole('COMMERCIAL','MAGASINIER')")
+    public ResponseEntity<BusinessDTOs.CommandeResponse> changerStatut(
+            @PathVariable Long id,
+            @PathVariable StatutCommande statut,
+            Authentication authentication) {
+        return ResponseEntity.ok(commandeService.changerStatut(id, statut, authentication));
     }
 }

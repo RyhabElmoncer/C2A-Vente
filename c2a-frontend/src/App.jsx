@@ -14,15 +14,12 @@ import DevisPage from './pages/devis/DevisPage'
 import CommandesPage from './pages/commandes/CommandesPage'
 import FacturesPage from './pages/factures/FacturesPage'
 import StockPage from './pages/stock/StockPage'
+import UsersPage from './pages/users/UsersPage'
 import ClientHomePage from './pages/client/ClientHomePage'
 import ClientProduitsPage from './pages/client/ClientProduitsPage'
+import { ROLES, homeFor, pageRoles } from './config/access'
 
-const internalRoles = ['GERANT', 'ADMIN', 'COMMERCIAL', 'MAGASINIER', 'COMPTABLE', 'AGENT_RECOUVREMENT']
-
-function homeFor(user) {
-  if (!user) return '/'
-  return user.role === 'CLIENT' ? '/client' : '/dashboard'
-}
+const internalRoles = [ROLES.GERANT, ROLES.ADMIN, ROLES.COMMERCIAL, ROLES.MAGASINIER, ROLES.COMPTABLE, ROLES.AGENT_RECOUVREMENT]
 
 function PrivateRoute({ children, roles }) {
   const { user, loading } = useAuth()
@@ -49,18 +46,19 @@ function AppRoutes() {
       <Route path="/catalogue-aluminium/:id" element={<AluminiumProfileDetailPage />} />
       <Route path="/login" element={user ? <Navigate to={homeFor(user)} replace /> : <LoginPage />} />
       <Route path="/register-client" element={user ? <Navigate to={homeFor(user)} replace /> : <RegisterClientPage />} />
-      <Route path="/client" element={<PrivateRoute roles={['CLIENT']}><Layout /></PrivateRoute>}>
+      <Route path="/client" element={<PrivateRoute roles={[ROLES.CLIENT]}><Layout /></PrivateRoute>}>
         <Route index element={<ClientHomePage />} />
         <Route path="produits" element={<ClientProduitsPage />} />
       </Route>
       <Route element={<PrivateRoute roles={internalRoles}><Layout /></PrivateRoute>}>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/clients" element={<ClientsPage />} />
-        <Route path="/produits" element={<ProduitsPage />} />
-        <Route path="/devis" element={<DevisPage />} />
-        <Route path="/commandes" element={<CommandesPage />} />
-        <Route path="/factures" element={<FacturesPage />} />
-        <Route path="/stock" element={<StockPage />} />
+        <Route path="/dashboard" element={<PrivateRoute roles={pageRoles.dashboard}><Dashboard /></PrivateRoute>} />
+        <Route path="/utilisateurs" element={<PrivateRoute roles={pageRoles.utilisateurs}><UsersPage /></PrivateRoute>} />
+        <Route path="/clients" element={<PrivateRoute roles={pageRoles.clients}><ClientsPage /></PrivateRoute>} />
+        <Route path="/produits" element={<PrivateRoute roles={pageRoles.produits}><ProduitsPage /></PrivateRoute>} />
+        <Route path="/devis" element={<PrivateRoute roles={pageRoles.devis}><DevisPage /></PrivateRoute>} />
+        <Route path="/commandes" element={<PrivateRoute roles={pageRoles.commandes}><CommandesPage /></PrivateRoute>} />
+        <Route path="/factures" element={<PrivateRoute roles={pageRoles.factures}><FacturesPage /></PrivateRoute>} />
+        <Route path="/stock" element={<PrivateRoute roles={pageRoles.stock}><StockPage /></PrivateRoute>} />
       </Route>
       <Route path="*" element={<Navigate to={homeFor(user)} replace />} />
     </Routes>

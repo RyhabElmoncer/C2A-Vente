@@ -4,11 +4,13 @@ import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import AuthShell from '../../components/auth/AuthShell'
 import { companyInfo } from '../../data/companyInfo'
+import { homeFor } from '../../config/access'
 
 const demoAccounts = [
   { label: 'Gérant', email: 'gerant@c2a.tn', pass: 'gerant123' },
   { label: 'Commercial', email: 'commercial@c2a.tn', pass: 'commercial123' },
   { label: 'Comptable', email: 'comptable@c2a.tn', pass: 'comptable123' },
+  { label: 'Recouvrement', email: 'agent@c2a.tn', pass: 'agent1234' },
   { label: 'Stock', email: 'stock@c2a.tn', pass: 'stock123' },
   { label: 'Client', email: 'client@c2a.tn', pass: 'client123' },
   { label: 'Admin', email: 'admin@c2a.tn', pass: 'admin123' },
@@ -26,7 +28,7 @@ export default function LoginPage() {
     try {
       const data = await login(form.email, form.password)
       toast.success('Connexion réussie !')
-      navigate(data.role === 'CLIENT' ? '/client' : '/')
+      navigate(homeFor(data))
     } catch {
       toast.error('Email ou mot de passe incorrect')
     } finally {

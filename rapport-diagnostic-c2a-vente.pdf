@@ -1,0 +1,2213 @@
+%PDF-1.3
+%ºß¬à
+3 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+/Length 6510
+>>
+stream
+0.200025 w
+0 G
+BT
+/F2 22 Tf
+25.2999999999999972 TL
+0.098 0.176 0.333 rg
+48. 785.8899999999999864 Td
+(Rapport Diagnostic C2A-Vente) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.353 g
+48. 755.8899999999999864 Td
+(Analyse statique du projet realisee le 06/05/2026. Aucun fichier source n'a ete modifie, aucune correction) Tj
+T* (automatique n'a ete lancee, et ce PDF est le seul artefact ajoute.) Tj
+ET
+BT
+/F2 15 Tf
+17.25 TL
+0.118 0.255 0.471 rg
+48. 707.8899999999999864 Td
+(1. Synthese) Tj
+ET
+0.86 0.88 0.92 RG
+48. 689.8899999999999864 m
+547.2799999999999727 689.8899999999999864 l
+S
+BT
+/F1 10.5 Tf
+12.0749999999999993 TL
+0.176 g
+48. 675.8899999999999864 Td
+(Le projet C2A-Vente est une application web full-stack de gestion commerciale. Il est organise en deux) Tj
+T* (sous-projets distincts : un frontend React/Vite et un backend Spring Boot expose sous forme d API REST) Tj
+T* (securisee par JWT. La base de donnees cible est MySQL.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 625.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 625.8899999999999864 Td
+(Architecture globale : three-tier, avec frontend React, backend Spring Boot et base MySQL.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 607.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 607.8899999999999864 Td
+(Frontend : React 18, Vite, Tailwind CSS, Axios, Recharts et react-hot-toast.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 589.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 589.8899999999999864 Td
+(Backend : Java 17, Spring Boot 3.2, Spring Security, JWT, Spring Data JPA, Lombok, Springdoc OpenAPI.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 571.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 571.8899999999999864 Td
+(API backend : contexte /api, port 8081.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 553.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 553.8899999999999864 Td
+(Frontend dev : port 3000, proxy /api vers http://localhost:8081.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 535.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 535.8899999999999864 Td
+(Etat general : structure claire, mais plusieurs risques de coherence, securite, numerotation et donnees) Tj
+T* (dashboard.) Tj
+ET
+BT
+/F2 15 Tf
+17.25 TL
+0.118 0.255 0.471 rg
+48. 492.8899999999999864 Td
+(2. Architecture Reelle) Tj
+ET
+0.86 0.88 0.92 RG
+48. 474.8899999999999864 m
+547.2799999999999727 474.8899999999999864 l
+S
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.255 0.471 rg
+48. 460.8899999999999864 Td
+(Frontend :) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.118 0.255 0.471 rg
+168. 460.8899999999999864 Td
+(c2a-frontend - application React/Vite) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.255 0.471 rg
+48. 441.8899999999999864 Td
+(Backend :) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.118 0.255 0.471 rg
+168. 441.8899999999999864 Td
+(c2a-backend - application Spring Boot) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.255 0.471 rg
+48. 422.8899999999999864 Td
+(Base de donnees :) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.118 0.255 0.471 rg
+168. 422.8899999999999864 Td
+(MySQL, schema configure : c2a_vente) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.255 0.471 rg
+48. 403.8899999999999864 Td
+(Authentification :) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.118 0.255 0.471 rg
+168. 403.8899999999999864 Td
+(JWT Bearer, token stocke dans localStorage cote frontend) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.255 0.471 rg
+48. 384.8899999999999864 Td
+(Routage frontend :) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.118 0.255 0.471 rg
+168. 384.8899999999999864 Td
+(react-router-dom avec routes privees) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.255 0.471 rg
+48. 365.8899999999999864 Td
+(Communication :) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.118 0.255 0.471 rg
+168. 365.8899999999999864 Td
+(Axios baseURL /api, proxy Vite vers backend) Tj
+ET
+BT
+/F2 15 Tf
+17.25 TL
+0.118 0.255 0.471 rg
+48. 334.8899999999999864 Td
+(3. Role De Chaque Dossier) Tj
+ET
+0.86 0.88 0.92 RG
+48. 316.8899999999999864 m
+547.2799999999999727 316.8899999999999864 l
+S
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 302.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 302.8899999999999864 Td
+(c2a-frontend/src/api : configuration Axios et services API centralises.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 284.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 284.8899999999999864 Td
+(c2a-frontend/src/context : contexte AuthContext pour login, logout, stockage du user et token.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 266.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 266.8899999999999864 Td
+(c2a-frontend/src/components/layout : structure generale de l application, sidebar, topbar et outlet.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 248.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 248.8899999999999864 Td
+(c2a-frontend/src/components/ui : composants UI reutilisables : Modal, Badge, EmptyState, SearchInput,) Tj
+T* (PageHeader, FormField.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 217.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 217.8899999999999864 Td
+(c2a-frontend/src/pages : pages metier React : auth, dashboard, clients, produits, devis, commandes,) Tj
+T* (factures, stock.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 186.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 186.8899999999999864 Td
+(c2a-backend/src/main/java/.../controller : controleurs REST et mapping des endpoints.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 168.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 168.8899999999999864 Td
+(c2a-backend/src/main/java/.../service/impl : logique metier des modules clients, produits, devis, commandes,) Tj
+T* (factures, stock, auth.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 137.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 137.8899999999999864 Td
+(c2a-backend/src/main/java/.../repository : interfaces Spring Data JPA.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 119.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 119.8899999999999864 Td
+(c2a-backend/src/main/java/.../entity : entites JPA et relations base de donnees.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 101.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 101.8899999999999864 Td
+(c2a-backend/src/main/java/.../dto : objets de requete/reponse exposes par API.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 83.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 83.8899999999999864 Td
+(c2a-backend/src/main/java/.../security : generation/validation JWT et filtre de securite.) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 28. Td
+(Rapport diagnostic C2A-Vente - Page 1) Tj
+ET
+endstream
+endobj
+5 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 6 0 R
+>>
+endobj
+6 0 obj
+<<
+/Length 6818
+>>
+stream
+0.200025 w
+0.86 0.88 0.92 RG
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 785.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+64. 785.8899999999999864 Td
+(c2a-backend/src/main/java/.../config : configuration securite et initialisation des utilisateurs demo.) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 767.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+64. 767.8899999999999864 Td
+(c2a-backend/src/main/resources : application.properties.) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 749.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+64. 749.8899999999999864 Td
+(dist, target, node_modules : artefacts generes ou dependances locales, pas du code source applicatif.) Tj
+ET
+BT
+/F2 15 Tf
+17.25 TL
+0.118 0.255 0.471 rg
+48. 719.8899999999999864 Td
+(4. Frontend React) Tj
+ET
+0.86 0.88 0.92 RG
+48. 701.8899999999999864 m
+547.2799999999999727 701.8899999999999864 l
+S
+BT
+/F1 10.5 Tf
+12.0749999999999993 TL
+0.176 g
+48. 687.8899999999999864 Td
+(Le frontend est concentre et lisible. Les appels HTTP sont regroupes dans services.js, les erreurs et le) Tj
+T* (token sont geres par axios.js, et les routes privees sont definies dans App.jsx.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 651.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 651.8899999999999864 Td
+(/login : page de connexion.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 633.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 633.8899999999999864 Td
+(/ : dashboard.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 615.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 615.8899999999999864 Td
+(/clients : gestion clients.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 597.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 597.8899999999999864 Td
+(/produits : catalogue produits.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 579.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 579.8899999999999864 Td
+(/devis : creation et suivi des devis, conversion en commande.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 561.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 561.8899999999999864 Td
+(/commandes : suivi et changement de statut des commandes.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 543.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 543.8899999999999864 Td
+(/factures : consultation factures et enregistrement des paiements.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 525.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 525.8899999999999864 Td
+(/stock : consultation stock, alertes rupture, mouvements et historique.) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 503.8899999999999864 Td
+(Fichiers frontend importants :) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 489.8899999999999864 Td
+(c2a-frontend/src/App.jsx : routes privees et mapping des pages.) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 475.8899999999999864 Td
+(c2a-frontend/src/main.jsx : BrowserRouter, Toaster et rendu React.) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 461.8899999999999864 Td
+(c2a-frontend/src/api/axios.js : baseURL /api, token Bearer, gestion 401/403.) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 447.8899999999999864 Td
+(c2a-frontend/src/api/services.js : clientsAPI, produitsAPI, devisAPI, commandesAPI, facturesAPI,) Tj
+T* (stockAPI, dashboardAPI.) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 422.8899999999999864 Td
+(c2a-frontend/src/context/AuthContext.jsx : login, logout, user, loading, hasRole.) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 408.8899999999999864 Td
+(c2a-frontend/src/components/layout/Layout.jsx : sidebar et navigation globale.) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 394.8899999999999864 Td
+(c2a-frontend/src/components/ui/index.jsx : composants UI partages.) Tj
+ET
+BT
+/F2 15 Tf
+17.25 TL
+0.118 0.255 0.471 rg
+48. 364.8899999999999864 Td
+(5. Backend Spring Boot) Tj
+ET
+0.86 0.88 0.92 RG
+48. 346.8899999999999864 m
+547.2799999999999727 346.8899999999999864 l
+S
+BT
+/F1 10.5 Tf
+12.0749999999999993 TL
+0.176 g
+48. 332.8899999999999864 Td
+(Le backend expose une API REST sous /api. La securite est stateless avec JWT. Les permissions sont) Tj
+T* (definies par annotations @PreAuthorize sur plusieurs endpoints sensibles.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 296.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 296.8899999999999864 Td
+(AuthController : login et register.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 278.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 278.8899999999999864 Td
+(ClientController : lecture, creation, modification, desactivation et creances.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 260.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 260.8899999999999864 Td
+(ProduitController : lecture, creation, modification, produits en rupture.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 242.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 242.8899999999999864 Td
+(DevisController : creation, changement de statut, conversion en commande.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 224.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 224.8899999999999864 Td
+(CommandeController : lecture, filtrage site/statut, creation, changement de statut.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 206.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 206.8899999999999864 Td
+(FactureController : lecture, creation facture, factures en retard, paiements.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 188.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 188.8899999999999864 Td
+(StockController : mouvements stock, ruptures, enregistrement mouvement.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 170.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 170.8899999999999864 Td
+(DashboardController : indicateurs financiers et ventes par mois.) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 148.8899999999999864 Td
+(Fichiers backend importants :) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 134.8899999999999864 Td
+(c2a-backend/pom.xml : dependances Java/Spring.) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 120.8899999999999864 Td
+(c2a-backend/src/main/resources/application.properties : port, DB, JWT, Swagger, mail.) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 106.8899999999999864 Td
+(c2a-backend/src/main/java/com/c2a/gestionventes/config/SecurityConfig.java : Spring Security.) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 92.8899999999999864 Td
+(c2a-backend/src/main/java/com/c2a/gestionventes/security/JwtUtil.java : generation/validation) Tj
+T* (JWT.) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 28. Td
+(Rapport diagnostic C2A-Vente - Page 2) Tj
+ET
+endstream
+endobj
+7 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 8 0 R
+>>
+endobj
+8 0 obj
+<<
+/Length 6413
+>>
+stream
+0.200025 w
+0.86 0.88 0.92 RG
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 785.8899999999999864 Td
+(c2a-backend/src/main/java/com/c2a/gestionventes/security/JwtAuthFilter.java : extraction Bearer) Tj
+T* (token.) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 760.8899999999999864 Td
+(c2a-backend/src/main/java/com/c2a/gestionventes/dto/BusinessDTOs.java : contrats metier.) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 746.8899999999999864 Td
+(c2a-backend/src/main/java/com/c2a/gestionventes/dto/AuthDTOs.java : contrats auth.) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 732.8899999999999864 Td
+(c2a-backend/src/main/java/com/c2a/gestionventes/entity/*.java : modele de donnees.) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 718.8899999999999864 Td
+(c2a-backend/src/main/java/com/c2a/gestionventes/repository/*.java : acces JPA.) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 704.8899999999999864 Td
+(c2a-backend/src/main/java/com/c2a/gestionventes/service/impl/*.java : logique metier.) Tj
+ET
+BT
+/F2 15 Tf
+17.25 TL
+0.118 0.255 0.471 rg
+48. 674.8899999999999864 Td
+(6. Base De Donnees) Tj
+ET
+0.86 0.88 0.92 RG
+48. 656.8899999999999864 m
+547.2799999999999727 656.8899999999999864 l
+S
+BT
+/F1 10.5 Tf
+12.0749999999999993 TL
+0.176 g
+48. 642.8899999999999864 Td
+(La base est relationnelle et pilotee par JPA/Hibernate avec ddl-auto=update. Les principales tables) Tj
+T* (proviennent des entites JPA.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 606.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 606.8899999999999864 Td
+(users : utilisateurs, roles, site, actif, credentials BCrypt.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 588.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 588.8899999999999864 Td
+(clients : identite client, contact, site, creditMax, soldeCreance, actif.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 570.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 570.8899999999999864 Td
+(produits : reference, designation, categorie, prix, unite, stockActuel, stockMin.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 552.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 552.8899999999999864 Td
+(devis et lignes_devis : documents commerciaux avant commande.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 534.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 534.8899999999999864 Td
+(commandes et lignes_commande : commandes client, montants, statut, livraison.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 516.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 516.8899999999999864 Td
+(factures : facture liee a commande, montant paye/restant, echeance, statut.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 498.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 498.8899999999999864 Td
+(paiements : paiements lies aux factures.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 480.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 480.8899999999999864 Td
+(mouvements_stock : historique des entrees, sorties, retours et ajustements.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 462.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 462.8899999999999864 Td
+(bons_livraison : modele present mais aucun controleur dedie visible dans le frontend actuel.) Tj
+ET
+BT
+/F2 15 Tf
+17.25 TL
+0.118 0.255 0.471 rg
+48. 432.8899999999999864 Td
+(7. Securite Et Roles) Tj
+ET
+0.86 0.88 0.92 RG
+48. 414.8899999999999864 m
+547.2799999999999727 414.8899999999999864 l
+S
+BT
+/F1 10.5 Tf
+12.0749999999999993 TL
+0.176 g
+48. 400.8899999999999864 Td
+(Le backend definit six roles et applique les permissions cote serveur. Le frontend possede une fonction) Tj
+T* (hasRole mais ne semble pas masquer les menus ni bloquer les pages par role.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 364.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 364.8899999999999864 Td
+(Roles : GERANT, ADMIN, COMMERCIAL, MAGASINIER, COMPTABLE, AGENT_RECOUVREMENT.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 346.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 346.8899999999999864 Td
+(Endpoints publics : /auth/**, /swagger-ui/**, /v3/api-docs/**.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 328.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 328.8899999999999864 Td
+(Toutes les autres routes backend demandent une authentification.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 310.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 310.8899999999999864 Td
+(JWT : role inclus dans les claims, expiration configuree a 86400000 ms.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 292.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 292.8899999999999864 Td
+(Frontend : token et user sauvegardes dans localStorage sous c2a_token et c2a_user.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 274.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 274.8899999999999864 Td
+(Risque : localStorage expose le token en cas de XSS.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 256.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 256.8899999999999864 Td
+(Risque : proprietes sensibles en clair dans application.properties.) Tj
+ET
+BT
+/F2 15 Tf
+17.25 TL
+0.118 0.255 0.471 rg
+48. 226.8899999999999864 Td
+(8. Endpoints Principaux) Tj
+ET
+0.86 0.88 0.92 RG
+48. 208.8899999999999864 m
+547.2799999999999727 208.8899999999999864 l
+S
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 194.8899999999999864 Td
+(AUTH) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 180.8899999999999864 Td
+(POST   /api/auth/login) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 166.8899999999999864 Td
+(POST   /api/auth/register) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 152.8899999999999864 Td
+() Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 138.8899999999999864 Td
+(CLIENTS) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 124.8899999999999864 Td
+(GET    /api/clients) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 110.8899999999999864 Td
+(GET    /api/clients/{id}) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 96.8899999999999864 Td
+(GET    /api/clients/site/{site}) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 82.8899999999999864 Td
+(GET    /api/clients/creances) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.137 g
+48. 68.8899999999999864 Td
+(POST   /api/clients) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 28. Td
+(Rapport diagnostic C2A-Vente - Page 3) Tj
+ET
+endstream
+endobj
+9 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 10 0 R
+>>
+endobj
+10 0 obj
+<<
+/Length 5308
+>>
+stream
+0.200025 w
+0.86 0.88 0.92 RG
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 785.8899999999999864 Td
+(PUT    /api/clients/{id}) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 771.8899999999999864 Td
+(DELETE /api/clients/{id}) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 757.8899999999999864 Td
+() Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 743.8899999999999864 Td
+(PRODUITS) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 729.8899999999999864 Td
+(GET    /api/produits) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 715.8899999999999864 Td
+(GET    /api/produits/{id}) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 701.8899999999999864 Td
+(GET    /api/produits/rupture) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 687.8899999999999864 Td
+(POST   /api/produits) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 673.8899999999999864 Td
+(PUT    /api/produits/{id}) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 659.8899999999999864 Td
+() Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 645.8899999999999864 Td
+(DEVIS) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 631.8899999999999864 Td
+(GET    /api/devis) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 617.8899999999999864 Td
+(GET    /api/devis/{id}) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 603.8899999999999864 Td
+(POST   /api/devis) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 589.8899999999999864 Td
+(PATCH  /api/devis/{id}/statut/{statut}) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 575.8899999999999864 Td
+(POST   /api/devis/{id}/convertir) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 561.8899999999999864 Td
+() Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 547.8899999999999864 Td
+(COMMANDES) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 533.8899999999999864 Td
+(GET    /api/commandes) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 519.8899999999999864 Td
+(GET    /api/commandes/{id}) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 505.8899999999999864 Td
+(GET    /api/commandes/site/{site}) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 491.8899999999999864 Td
+(GET    /api/commandes/statut/{statut}) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 477.8899999999999864 Td
+(POST   /api/commandes) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 463.8899999999999864 Td
+(PATCH  /api/commandes/{id}/statut/{statut}) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 449.8899999999999864 Td
+() Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 435.8899999999999864 Td
+(FACTURES) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 421.8899999999999864 Td
+(GET    /api/factures) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 407.8899999999999864 Td
+(GET    /api/factures/{id}) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 393.8899999999999864 Td
+(GET    /api/factures/retard) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 379.8899999999999864 Td
+(POST   /api/factures) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 365.8899999999999864 Td
+(POST   /api/factures/paiements) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 351.8899999999999864 Td
+() Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 337.8899999999999864 Td
+(STOCK) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 323.8899999999999864 Td
+(GET    /api/stock/mouvements/{produitId}) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 309.8899999999999864 Td
+(GET    /api/stock/rupture) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 295.8899999999999864 Td
+(POST   /api/stock/mouvements) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 281.8899999999999864 Td
+() Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 267.8899999999999864 Td
+(DASHBOARD) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 253.8899999999999864 Td
+(GET    /api/dashboard) Tj
+ET
+BT
+/F2 15 Tf
+17.25 TL
+0.118 0.255 0.471 rg
+48. 223.8899999999999864 Td
+(9. Comptes Et Donnees Demo) Tj
+ET
+0.86 0.88 0.92 RG
+48. 205.8899999999999864 m
+547.2799999999999727 205.8899999999999864 l
+S
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 191.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 191.8899999999999864 Td
+(DataInitializer cree quatre comptes si la table users est vide : admin, gerant, commercial, comptable.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 173.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 173.8899999999999864 Td
+(admin@c2a.tn / admin123) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 155.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 155.8899999999999864 Td
+(gerant@c2a.tn / gerant123) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 137.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 137.8899999999999864 Td
+(commercial@c2a.tn / commercial123) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 119.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 119.8899999999999864 Td
+(comptable@c2a.tn / comptable123) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 101.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 101.8899999999999864 Td
+(Le README mentionne d autres comptes : admin@c2a.com / 123456 et vendeur@c2a.com / 123456, ce qui) Tj
+T* (ne correspond pas au code actuel.) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 28. Td
+(Rapport diagnostic C2A-Vente - Page 4) Tj
+ET
+endstream
+endobj
+11 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 12 0 R
+>>
+endobj
+12 0 obj
+<<
+/Length 5844
+>>
+stream
+0.200025 w
+0.86 0.88 0.92 RG
+BT
+/F2 15 Tf
+17.25 TL
+0.118 0.255 0.471 rg
+48. 777.8899999999999864 Td
+(10. Risques Et Erreurs Possibles) Tj
+ET
+0.86 0.88 0.92 RG
+48. 759.8899999999999864 m
+547.2799999999999727 759.8899999999999864 l
+S
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 745.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 745.8899999999999864 Td
+(Critique : generation numero commande dans DevisServiceImpl utilise) Tj
+T* (String.valueOf\(commandeRepository.findByNumero\(prefix\)\), ce qui peut produire Optional.empty puis casser) Tj
+T* (le parsing numerique.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 701.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 701.8899999999999864 Td
+(Critique : CommandeRepository.findLastNumero utilise LIKE :prefix sans joker %, donc peut ne jamais) Tj
+T* (trouver le dernier numero et provoquer des doublons.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 670.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 670.8899999999999864 Td
+(Critique : DevisRepository utilise une requete JPQL avec LIKE :prefix%, syntaxe suspecte a verifier au) Tj
+T* (demarrage.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 639.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 639.8899999999999864 Td
+(Factures : numero genere avec Math.random\(\), risque de collision.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 621.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 621.8899999999999864 Td
+(Creances : la creation d une facture ne semble pas augmenter client.soldeCreance, mais le paiement le) Tj
+T* (diminue ensuite.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 590.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 590.8899999999999864 Td
+(Dashboard : le frontend affiche topClients et topProduits, mais le backend ne les remplit pas.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 572.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 572.8899999999999864 Td
+(Stock : AJUSTEMENT est traite comme une sortie, pas comme une correction explicite du stock.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 554.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 554.8899999999999864 Td
+(Stock : userId est transmis par query param et non derive du JWT, donc attribution manipulable.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 536.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 536.8899999999999864 Td
+(Securite : jwt.secret, user MySQL root, password vide et configuration mail sont en clair dans) Tj
+T* (application.properties.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 505.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 505.8899999999999864 Td
+(CORS : cors.allowed-origins est declare dans application.properties, mais aucun bean CORS n a ete trouve) Tj
+T* (dans SecurityConfig.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 474.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 474.8899999999999864 Td
+(Frontend : toutes les pages sont visibles dans le menu pour tout utilisateur connecte ; les restrictions sont) Tj
+T* (surtout backend.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 443.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 443.8899999999999864 Td
+(README incoherent avec le code : port 8080 vs 8081, base c2a_ventes vs c2a_vente, comptes demo) Tj
+T* (differents.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 412.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 412.8899999999999864 Td
+(Hygiene repo : aucun .gitignore trouve ; node_modules, dist et target apparaissent comme artefacts locaux) Tj
+T* (non ignores.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 381.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 381.8899999999999864 Td
+(Tests : aucun test backend ou frontend visible dans les sources inspectees.) Tj
+ET
+BT
+/F2 15 Tf
+17.25 TL
+0.118 0.255 0.471 rg
+48. 351.8899999999999864 Td
+(11. Verification Du Plan) Tj
+ET
+0.86 0.88 0.92 RG
+48. 333.8899999999999864 m
+547.2799999999999727 333.8899999999999864 l
+S
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 319.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 319.8899999999999864 Td
+(Aucun changement d API.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 301.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 301.8899999999999864 Td
+(Aucun changement React.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 283.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 283.8899999999999864 Td
+(Aucun changement Spring Boot.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 265.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 265.8899999999999864 Td
+(Aucun changement base de donnees.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 247.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 247.8899999999999864 Td
+(PDF genere en francais a partir du diagnostic precedent.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+48. 229.8899999999999864 Td
+(-) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.176 g
+64. 229.8899999999999864 Td
+(Le PDF indique explicitement qu aucune correction automatique ni modification de code n a ete lancee.) Tj
+ET
+BT
+/F2 15 Tf
+17.25 TL
+0.118 0.255 0.471 rg
+48. 199.8899999999999864 Td
+(12. Conclusion) Tj
+ET
+0.86 0.88 0.92 RG
+48. 181.8899999999999864 m
+547.2799999999999727 181.8899999999999864 l
+S
+BT
+/F1 10.5 Tf
+12.0749999999999993 TL
+0.176 g
+48. 167.8899999999999864 Td
+(Le projet presente une architecture coherente pour un PFE full-stack, avec separation claire) Tj
+T* (frontend/backend et une base metier deja avancee. Les priorites techniques a traiter avant demonstration) Tj
+T* (ou livraison sont la numerotation des documents, la coherence README/configuration, la securisation des) Tj
+T* (secrets, la gestion correcte des creances, le dashboard incomplet et l alignement des permissions) Tj
+T* (frontend/backend.) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.471 g
+48. 28. Td
+(Rapport diagnostic C2A-Vente - Page 5) Tj
+ET
+endstream
+endobj
+1 0 obj
+<</Type /Pages
+/Kids [3 0 R 5 0 R 7 0 R 9 0 R 11 0 R ]
+/Count 5
+>>
+endobj
+13 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+14 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+15 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+16 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+17 0 obj
+<<
+/Type /Font
+/BaseFont /Courier
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+18 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+19 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+20 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+21 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Roman
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+22 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+23 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Italic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+24 0 obj
+<<
+/Type /Font
+/BaseFont /Times-BoldItalic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+25 0 obj
+<<
+/Type /Font
+/BaseFont /ZapfDingbats
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+26 0 obj
+<<
+/Type /Font
+/BaseFont /Symbol
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+2 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+/Font <<
+/F1 13 0 R
+/F2 14 0 R
+/F3 15 0 R
+/F4 16 0 R
+/F5 17 0 R
+/F6 18 0 R
+/F7 19 0 R
+/F8 20 0 R
+/F9 21 0 R
+/F10 22 0 R
+/F11 23 0 R
+/F12 24 0 R
+/F13 25 0 R
+/F14 26 0 R
+>>
+/XObject <<
+>>
+>>
+endobj
+27 0 obj
+<<
+/Producer (jsPDF 2.5.2)
+/CreationDate (D:20260506131414+01'00')
+>>
+endobj
+28 0 obj
+<<
+/Type /Catalog
+/Pages 1 0 R
+/OpenAction [3 0 R /FitH null]
+/PageLayout /OneColumn
+>>
+endobj
+xref
+0 29
+0000000000 65535 f 
+0000031858 00000 n 
+0000033705 00000 n 
+0000000015 00000 n 
+0000000152 00000 n 
+0000006714 00000 n 
+0000006851 00000 n 
+0000013721 00000 n 
+0000013858 00000 n 
+0000020323 00000 n 
+0000020461 00000 n 
+0000025822 00000 n 
+0000025961 00000 n 
+0000031940 00000 n 
+0000032066 00000 n 
+0000032197 00000 n 
+0000032331 00000 n 
+0000032469 00000 n 
+0000032593 00000 n 
+0000032722 00000 n 
+0000032854 00000 n 
+0000032990 00000 n 
+0000033118 00000 n 
+0000033245 00000 n 
+0000033374 00000 n 
+0000033507 00000 n 
+0000033609 00000 n 
+0000033958 00000 n 
+0000034044 00000 n 
+trailer
+<<
+/Size 29
+/Root 28 0 R
+/Info 27 0 R
+/ID [ <A82DB751E709CE247D56E1679D47BEEB> <A82DB751E709CE247D56E1679D47BEEB> ]
+>>
+startxref
+34148
+%%EOF

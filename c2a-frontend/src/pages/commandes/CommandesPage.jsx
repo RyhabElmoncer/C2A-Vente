@@ -2,11 +2,17 @@ import { useEffect, useState } from 'react'
 import { commandesAPI } from '../../api/services'
 import { Badge, EmptyState, SearchInput, PageHeader } from '../../components/ui'
 import toast from 'react-hot-toast'
+import { useAuth } from '../../context/AuthContext'
+import { ROLES } from '../../config/access'
 
-const nextStatut = { EN_ATTENTE: 'CONFIRMEE', CONFIRMEE: 'EN_PREPARATION', EN_PREPARATION: 'EXPEDIEE', EXPEDIEE: 'LIVREE' }
 const STATUTS = ['EN_ATTENTE', 'CONFIRMEE', 'EN_PREPARATION', 'EXPEDIEE', 'LIVREE', 'ANNULEE']
+const statutActionsByRole = {
+  [ROLES.COMMERCIAL]: { EN_ATTENTE: 'CONFIRMEE' },
+  [ROLES.MAGASINIER]: { CONFIRMEE: 'EN_PREPARATION', EN_PREPARATION: 'EXPEDIEE', EXPEDIEE: 'LIVREE' },
+}
 
 export default function CommandesPage() {
+  const { user } = useAuth()
   const [commandes, setCommandes] = useState([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -21,6 +27,7 @@ export default function CommandesPage() {
   )
 
   const handleStatut = async (id, s) => { await commandesAPI.changerStatut(id, s); toast.success(`→ ${s}`); load() }
+  const nextStatut = statutActionsByRole[user?.role] || {}
 
   return (
     <div className="page-shell">

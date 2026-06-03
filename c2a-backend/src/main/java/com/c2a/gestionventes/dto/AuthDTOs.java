@@ -35,10 +35,35 @@ public class AuthDTOs {
         @NotBlank private String nom;
         @NotBlank private String prenom;
         @NotBlank @Email private String email;
-        @NotBlank private String password;
+        @NotBlank @Size(min = 8, message = "Le mot de passe doit contenir au moins 8 caracteres")
+        private String password;
         @NotNull private Role role;
         @NotBlank private String site;
         private String telephone;
+    }
+
+    @Data
+    public static class UserUpdateRequest {
+        @NotBlank private String nom;
+        @NotBlank private String prenom;
+        @NotBlank @Email private String email;
+        private String password;
+        @NotNull private Role role;
+        @NotBlank private String site;
+        private String telephone;
+        private Boolean actif;
+    }
+
+    @Data
+    public static class UserResponse {
+        private Long id;
+        private String nom;
+        private String prenom;
+        private String email;
+        private Role role;
+        private String site;
+        private String telephone;
+        private boolean actif;
     }
 
     @Data

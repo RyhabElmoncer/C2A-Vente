@@ -1,0 +1,66 @@
+export const aluminiumProfiles = [
+  {
+    id: 1,
+    reference: '67 103',
+    nom: 'Profile aluminium 67 103',
+    categorie: 'Profiles aluminium',
+    image: '/images/catalogue-aluminium/67-103.png',
+    largeur: 65,
+    hauteur: 75,
+    description: 'Profile aluminium technique reference 67 103. Largeur 65 mm, hauteur 75 mm, retombee visible 40 mm.',
+  },
+  {
+    id: 2,
+    reference: '67 112',
+    nom: 'Profile aluminium 67 112',
+    categorie: 'Profiles aluminium',
+    image: '/images/catalogue-aluminium/67-112.png',
+    largeur: 65,
+    hauteur: 85,
+    description: 'Profile aluminium technique reference 67 112. Largeur 65 mm, hauteur 85 mm, retombee visible 40 mm.',
+  },
+  {
+    id: 3,
+    reference: '67 109',
+    nom: 'Profile aluminium 67 109',
+    categorie: 'Profiles aluminium',
+    image: '/images/catalogue-aluminium/67-109.png',
+    largeur: 81.5,
+    hauteur: 61,
+    description: 'Profile aluminium technique reference 67 109. Largeur 81.5 mm, hauteur 61 mm, retombee visible 40 mm.',
+  },
+  {
+    id: 4,
+    reference: '67 102',
+    nom: 'Profile aluminium 67 102',
+    categorie: 'Profiles aluminium',
+    image: '/images/catalogue-aluminium/67-102.png',
+    largeur: 65,
+    hauteur: 61,
+    description: 'Profile aluminium technique reference 67 102. Largeur 65 mm, hauteur 61 mm, retombee visible 40 mm.',
+  },
+  {
+    id: 5,
+    reference: '67 101',
+    nom: 'Profile aluminium 67 101',
+    categorie: 'Profiles aluminium',
+    image: '/images/catalogue-aluminium/67-101.png',
+    largeur: 65,
+    hauteur: 40,
+    description: 'Profile aluminium technique reference 67 101. Largeur 65 mm, hauteur 40 mm, cote interieure visible 36.5 mm.',
+  },
+  {
+    id: 6,
+    reference: '67 115',
+    nom: 'Profile aluminium 67 115',
+    categorie: 'Profiles aluminium',
+    image: '/images/catalogue-aluminium/67-115.png',
+    largeur: 65,
+    hauteur: 40,
+    description: 'Profile aluminium technique reference 67 115. Largeur 65 mm, hauteur 40 mm, cote interieure visible 36.5 mm.',
+  },
+]
+
+export function findAluminiumProfileById(id) {
+  return aluminiumProfiles.find(profile => String(profile.id) === String(id))
+}

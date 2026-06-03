@@ -6,18 +6,20 @@ import { companyInfo } from '../../data/companyInfo'
 import {
   HomeIcon, UsersIcon, CubeIcon, DocumentTextIcon,
   ShoppingCartIcon, ReceiptPercentIcon, ArchiveBoxIcon,
-  ArrowRightOnRectangleIcon, BellIcon
+  ArrowRightOnRectangleIcon, BellIcon, ShieldCheckIcon
 } from '@heroicons/react/24/outline'
 import { useState } from 'react'
+import { ROLES, pageRoles, roleLabels } from '../../config/access'
 
 const internalNavItems = [
-  { to: '/dashboard', label: 'Tableau de bord', icon: HomeIcon,             exact: true },
-  { to: '/clients',   label: 'Clients',          icon: UsersIcon },
-  { to: '/produits',  label: 'Catalogue',        icon: CubeIcon },
-  { to: '/devis',     label: 'Devis',            icon: DocumentTextIcon },
-  { to: '/commandes', label: 'Commandes',        icon: ShoppingCartIcon },
-  { to: '/factures',  label: 'Facturation',      icon: ReceiptPercentIcon },
-  { to: '/stock',     label: 'Stock',            icon: ArchiveBoxIcon },
+  { to: '/dashboard',    label: 'Tableau de bord', icon: HomeIcon,             exact: true, roles: pageRoles.dashboard },
+  { to: '/utilisateurs', label: 'Utilisateurs',     icon: ShieldCheckIcon,                 roles: pageRoles.utilisateurs },
+  { to: '/clients',      label: 'Clients',          icon: UsersIcon,                       roles: pageRoles.clients },
+  { to: '/produits',     label: 'Catalogue',        icon: CubeIcon,                        roles: pageRoles.produits },
+  { to: '/devis',        label: 'Devis',            icon: DocumentTextIcon,                roles: pageRoles.devis },
+  { to: '/commandes',    label: 'Commandes',        icon: ShoppingCartIcon,                roles: pageRoles.commandes },
+  { to: '/factures',     label: 'Facturation',      icon: ReceiptPercentIcon,              roles: pageRoles.factures },
+  { to: '/stock',        label: 'Stock',            icon: ArchiveBoxIcon,                  roles: pageRoles.stock },
 ]
 
 const clientNavItems = [
@@ -39,7 +41,9 @@ export default function Layout() {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
   const [sidebarOpen, setSidebarOpen] = useState(true)
-  const navItems = user?.role === 'CLIENT' ? clientNavItems : internalNavItems
+  const navItems = user?.role === ROLES.CLIENT
+    ? clientNavItems
+    : internalNavItems.filter(item => item.roles.includes(user?.role))
 
   const handleLogout = () => { logout(); navigate('/login') }
 
@@ -53,7 +57,7 @@ export default function Layout() {
           {sidebarOpen && (
             <div>
               <p className="text-sm font-black leading-tight text-white">{companyInfo.officialName}</p>
-              <p className="text-xs text-slate-400">{user?.role === 'CLIENT' ? 'Espace client' : 'ERP aluminium & acier'}</p>
+              <p className="text-xs text-slate-400">{user?.role === ROLES.CLIENT ? 'Espace client' : 'ERP aluminium & acier'}</p>
             </div>
           )}
         </div>
@@ -89,7 +93,7 @@ export default function Layout() {
               <div className="flex-1 min-w-0">
                 <p className="truncate text-sm font-semibold text-white">{user?.nom} {user?.prenom}</p>
                 <span className={roleColors[user?.role] || 'badge-gray'}>
-                  {user?.role}
+                  {roleLabels[user?.role] || user?.role}
                 </span>
               </div>
               <button onClick={handleLogout} className="rounded-lg p-1.5 text-slate-400 transition hover:bg-white/10 hover:text-red-300">
@@ -128,7 +132,7 @@ export default function Layout() {
         <main className="flex-1 overflow-y-auto p-4 sm:p-6">
           <Outlet />
         </main>
-        {user?.role === 'CLIENT' && <PublicChatbot />}
+        {user?.role === ROLES.CLIENT && <PublicChatbot />}
       </div>
     </div>
   )

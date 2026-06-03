@@ -22,43 +22,43 @@ class ClientController {
     private final ClientServiceImpl clientService;
 
     @GetMapping
-    @PreAuthorize("!hasRole('CLIENT')")
+    @PreAuthorize("hasRole('COMMERCIAL')")
     public ResponseEntity<List<BusinessDTOs.ClientResponse>> findAll() {
         return ResponseEntity.ok(clientService.findAll());
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("!hasRole('CLIENT')")
+    @PreAuthorize("hasRole('COMMERCIAL')")
     public ResponseEntity<BusinessDTOs.ClientResponse> findById(@PathVariable Long id) {
         return ResponseEntity.ok(clientService.findById(id));
     }
 
     @GetMapping("/site/{site}")
-    @PreAuthorize("!hasRole('CLIENT')")
+    @PreAuthorize("hasRole('COMMERCIAL')")
     public ResponseEntity<List<BusinessDTOs.ClientResponse>> findBySite(@PathVariable String site) {
         return ResponseEntity.ok(clientService.findBySite(site));
     }
 
     @GetMapping("/creances")
-    @PreAuthorize("hasAnyRole('COMPTABLE','GERANT','ADMIN','AGENT_RECOUVREMENT')")
+    @PreAuthorize("hasAnyRole('COMPTABLE','AGENT_RECOUVREMENT')")
     public ResponseEntity<List<BusinessDTOs.ClientResponse>> findAvecCreances() {
         return ResponseEntity.ok(clientService.findAvecCreances());
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('COMMERCIAL','ADMIN','GERANT')")
+    @PreAuthorize("hasRole('COMMERCIAL')")
     public ResponseEntity<BusinessDTOs.ClientResponse> create(@Valid @RequestBody BusinessDTOs.ClientRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(clientService.create(request));
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('COMMERCIAL','ADMIN','GERANT')")
+    @PreAuthorize("hasRole('COMMERCIAL')")
     public ResponseEntity<BusinessDTOs.ClientResponse> update(@PathVariable Long id, @Valid @RequestBody BusinessDTOs.ClientRequest request) {
         return ResponseEntity.ok(clientService.update(id, request));
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','GERANT')")
+    @PreAuthorize("hasRole('COMMERCIAL')")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         clientService.delete(id);
         return ResponseEntity.noContent().build();

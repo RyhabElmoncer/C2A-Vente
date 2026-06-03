@@ -3,6 +3,8 @@ import { produitsAPI } from '../../api/services'
 import { Modal, EmptyState, SearchInput, PageHeader, FormField } from '../../components/ui'
 import toast from 'react-hot-toast'
 import { PlusIcon, PencilIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import { useAuth } from '../../context/AuthContext'
+import { ROLES } from '../../config/access'
 
 const CATEGORIES = ['ALUMINIUM', 'INOX', 'BOIS', 'MDF', 'ACCESSOIRE']
 const UNITES = ['ML', 'M2', 'KG', 'PIECE', 'M3', 'LITRE']
@@ -34,6 +36,7 @@ function ProduitForm({ initial, onSubmit, onClose }) {
 }
 
 export default function ProduitsPage() {
+  const { user } = useAuth()
   const [produits, setProduits] = useState([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -50,11 +53,12 @@ export default function ProduitsPage() {
 
   const handleCreate = async (data) => { await produitsAPI.create(data); toast.success('Produit créé !'); setModal(null); load() }
   const handleUpdate = async (data) => { await produitsAPI.update(modal.item.id, data); toast.success('Mis à jour !'); setModal(null); load() }
+  const canManageProducts = user?.role === ROLES.MAGASINIER
 
   return (
     <div className="page-shell">
       <PageHeader title="Catalogue produits" subtitle={`${produits.length} produit(s)`}
-        action={<button onClick={() => setModal('create')} className="btn-primary flex items-center gap-2"><PlusIcon className="w-4 h-4" />Nouveau produit</button>} />
+        action={canManageProducts && <button onClick={() => setModal('create')} className="btn-primary flex items-center gap-2"><PlusIcon className="w-4 h-4" />Nouveau produit</button>} />
       <div className="toolbar">
         <SearchInput value={search} onChange={setSearch} placeholder="Référence, désignation…" />
         <select value={cat} onChange={e => setCat(e.target.value)} className="input-field w-44">
@@ -67,7 +71,7 @@ export default function ProduitsPage() {
         {loading ? <div className="flex justify-center py-16"><div className="loading-spinner"/></div>
         : filtered.length === 0 ? <EmptyState message="Aucun produit" /> : (
           <div className="overflow-x-auto"><table className="w-full">
-            <thead><tr>{['Réf.','Désignation','Catégorie','Prix achat','Prix vente','Unité','Stock','Statut',''].map(h=><th key={h} className="table-header">{h}</th>)}</tr></thead>
+            <thead><tr>{['Réf.','Désignation','Catégorie','Prix achat','Prix vente','Unité','Stock','Statut', canManageProducts ? 'Actions' : null].filter(Boolean).map(h=><th key={h} className="table-header">{h}</th>)}</tr></thead>
             <tbody>
               {filtered.map(p => (
                 <tr key={p.id} className={`table-row ${p.enRupture ? 'bg-red-50/50' : ''}`}>
@@ -79,7 +83,7 @@ export default function ProduitsPage() {
                   <td className="table-cell">{p.unite}</td>
                   <td className="table-cell"><span className={p.enRupture ? 'text-red-600 font-bold' : ''}>{p.stockActuel} {p.enRupture && '⚠'}</span><span className="text-gray-400 text-xs ml-1">/ {p.stockMin}</span></td>
                   <td className="table-cell"><span className={p.actif ? 'badge-success' : 'badge-danger'}>{p.actif ? 'Actif' : 'Inactif'}</span></td>
-                  <td className="table-cell"><button onClick={() => setModal({ type:'edit', item:p })} className="icon-button"><PencilIcon className="w-4 h-4" /></button></td>
+                  {canManageProducts && <td className="table-cell"><button onClick={() => setModal({ type:'edit', item:p })} className="icon-button"><PencilIcon className="w-4 h-4" /></button></td>}
                 </tr>
               ))}
             </tbody>

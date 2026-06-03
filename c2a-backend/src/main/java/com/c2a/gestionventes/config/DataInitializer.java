@@ -26,6 +26,7 @@ class DataInitializer {
         createUserIfMissing("Dammak", "Mohamed", "gerant@c2a.tn", "gerant123", Role.GERANT, "Sfax");
         createUserIfMissing("Commercial", "Sfax", "commercial@c2a.tn", "commercial123", Role.COMMERCIAL, "Sfax");
         createUserIfMissing("Comptable", "C2A", "comptable@c2a.tn", "comptable123", Role.COMPTABLE, "Sfax");
+        createUserIfMissing("Recouvrement", "C2A", "agent@c2a.tn", "agent1234", Role.AGENT_RECOUVREMENT, "Sfax");
         createUserIfMissing("Stock", "C2A", "stock@c2a.tn", "stock123", Role.MAGASINIER, "Sfax");
         createUserIfMissing("Client", "C2A", "client@c2a.tn", "client123", Role.CLIENT, "Sfax");
         createClientIfMissing();

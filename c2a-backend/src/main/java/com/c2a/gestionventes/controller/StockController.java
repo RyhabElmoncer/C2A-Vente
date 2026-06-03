@@ -20,19 +20,19 @@ class StockController {
     private final StockServiceImpl stockService;
 
     @GetMapping("/mouvements/{produitId}")
-    @PreAuthorize("!hasRole('CLIENT')")
+    @PreAuthorize("hasRole('MAGASINIER')")
     public ResponseEntity<List<MouvementStockResponse>> findByProduit(@PathVariable Long produitId) {
         return ResponseEntity.ok(stockService.findByProduit(produitId));
     }
 
     @GetMapping("/rupture")
-    @PreAuthorize("!hasRole('CLIENT')")
+    @PreAuthorize("hasRole('MAGASINIER')")
     public ResponseEntity<List<ProduitResponse>> getProduitEnRupture() {
         return ResponseEntity.ok(stockService.getProduitEnRupture());
     }
 
     @PostMapping("/mouvements")
-    @PreAuthorize("hasAnyRole('MAGASINIER','ADMIN','GERANT')")
+    @PreAuthorize("hasRole('MAGASINIER')")
     public ResponseEntity<MouvementStockResponse> enregistrerMouvement(
             @Valid @RequestBody MouvementStockRequest request,
             @RequestParam(required = false) Long userId) {
